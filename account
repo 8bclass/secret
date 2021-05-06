@@ -1,0 +1,56 @@
+
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+
+  <meta charset="UTF-8">
+  
+<link rel="apple-touch-icon" type="image/png" href="https://cpwebassets.codepen.io/assets/favicon/apple-touch-icon-5ae1a0698dcc2402e9712f7d01ed509a57814f994c660df9f7a952f3060705ee.png" />
+<meta name="apple-mobile-web-app-title" content="CodePen">
+
+<link rel="shortcut icon" type="image/x-icon" href="https://cpwebassets.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico" />
+
+<link rel="mask-icon" type="" href="https://cpwebassets.codepen.io/assets/favicon/logo-pin-8f3771b1072e3c38bd662872f6b673a722f4b3ca2421637d5596661b4e2132cc.svg" color="#111" />
+
+
+  <title>CodePen - Secret Santa Generator</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.25/css/uikit.min.css'>
+  
+
+  
+  
+  
+  
+
+</head>
+
+<body translate="no" >
+
+    <section v-if="view === 'read'">
+      <img width="500" height="300" data-src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/111863/funny-fresh-prince-santa-merry-christmas-gif.gif" uk-img />
+      <h1>Greetings 1, {{ person }}!</h1>
+      <div v-if="promise">
+        <p>You are Secret Santa for <strong>{{ recipient }}</strong>.</p>
+      </div>
+      <div v-else>
+        <p>By clicking below, you promise, under penalty of arctic purjury, that you are <strong>{{ person }}</strong>.</p>
+        <button @click="promise = true" v-if="!promise" class="uk-button uk-button-primary">
+          I am <strong>{{ person }}</strong>
+        </button>
+    </section>
+  </div>
+</div>
+  
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.17/vue.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.25/js/uikit.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.25/js/uikit-icons.min.js'></script>
+     
+
+</body>
+
+</html>
