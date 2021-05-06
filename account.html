@@ -96,15 +96,15 @@
     </section>
 
     <section v-if="view === 'read'">
-      <img width="500" height="300" data-src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/111863/funny-fresh-prince-santa-merry-christmas-gif.gif" uk-img />
-      <h1>Բարև, {{ person }}!</h1>
+      <img width="500" height="300" data-src="https://i.pinimg.com/originals/eb/2a/8f/eb2a8f4ddfb50c23712a3cd0d5cc2a3a.gif" uk-img />
+      <h1>Դե ինչ Բարի Գալուստ <br> Secret Summer-ի ժամանակն է, {{ person }}!</h1>
       <div v-if="promise">
-        <p>You are Secret Santa for <strong>{{ recipient }}</strong>.</p>
+        <p>Դու պետք է նվեր տաս <strong>{{ recipient }}</strong> ին։</p>
       </div>
       <div v-else>
-        <p>By clicking below, you promise, under penalty of arctic purjury, that you are <strong>{{ person }}</strong>.</p>
+        <p><strong>{{ person }}</strong> սեղմիր ներքևում գտվող կոճակի վրա և իմացիր, թե ում պետք է նվեր տաս այս ամռանը։</p>
         <button @click="promise = true" v-if="!promise" class="uk-button uk-button-primary">
-          I am <strong>{{ person }}</strong>
+          <strong>Շարունակել</strong>
         </button>
     </section>
   </div>
