@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en" >
 
@@ -21,7 +19,105 @@
 
   <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.25/css/uikit.min.css'>
   
+  <style>
+    *{
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+    }
 
+    body{
+        font-family: "SF Pro Text","Myriad Set Pro","SF Pro Icons","Helvetica Neue","Helvetica","Arial",sans-serif;;
+    }
+
+    h2{
+        font-size: 5rem;
+        font-weight: bold;
+    }
+
+    .coming-soon{
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .countdown{
+        display: flex;
+        justify-content: space-around;
+        text-align: center;
+    }
+
+    .day,.hour,.minute,.second{
+        font-size: 3rem;
+    }
+
+    .waiting{
+        height: 50vh;
+    }
+    
+    @media screen and (max-width: 1500px){
+        h2{
+            font-size: 2.5rem;
+        }
+
+        .day,.hour,.minute,.second{
+            font-size: 2rem;
+        }
+
+        .waiting{
+            height: 47vh;
+        }
+    }
+
+    @media screen and (max-width: 1100px){
+        h2{
+            font-size: 2rem;
+        }
+
+        .day,.hour,.minute,.second{
+            font-size: 1.8rem;
+        }
+
+        .waiting{
+            height: 45vh;
+        }
+    }
+
+    @media screen and (max-width: 830px){
+        h2{
+            font-size: 2rem;
+        }
+
+        .day,.hour,.minute,.second{
+            font-size: 3rem;
+        }
+
+        .waiting{
+            height: 40vh;
+        }
+    }
+
+    @media screen and (max-width: 767px){
+        h2{
+            font-size: 1.5rem;
+        }
+
+        .day,.hour,.minute,.second{
+            font-size: 2rem;
+        }
+
+        .waiting{
+            height: 30vh;
+        }
+    }
+
+    .uk-section{
+        display: none;
+    }
+
+</style>
   
   
   
@@ -96,19 +192,43 @@
     </section>
 
     <section v-if="view === 'read'">
-      <img width="500" height="300" data-src="https://i.pinimg.com/originals/eb/2a/8f/eb2a8f4ddfb50c23712a3cd0d5cc2a3a.gif" uk-img />
-      <h1>Դե ինչ Բարի Գալուստ <br> Secret Summer-ի ժամանակն է, {{ person }}!</h1>
+      <img width="500" height="300" data-src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/111863/funny-fresh-prince-santa-merry-christmas-gif.gif" uk-img />
+      <h1>Greetings, {{ person }}!</h1>
       <div v-if="promise">
-        <p>Դու պետք է նվեր տաս <strong>{{ recipient }}</strong> ին։</p>
+        <p>You are Secret Santa for <strong>{{ recipient }}</strong>.</p>
       </div>
       <div v-else>
-        <p><strong>{{ person }}</strong> սեղմիր ներքևում գտվող կոճակի վրա և իմացիր, թե ում պետք է նվեր տաս այս ամռանը։</p>
+        <p>By clicking below, you promise, under penalty of arctic purjury, that you are <strong>{{ person }}</strong>.</p>
         <button @click="promise = true" v-if="!promise" class="uk-button uk-button-primary">
-          <strong>Շարունակել</strong>
+          I am <strong>{{ person }}</strong>
         </button>
     </section>
   </div>
 </div>
+<section class="coming-soon">
+    <div>
+        <h2>Secret Summer countdown!</h2>
+        <div class="countdown">
+            <div class="container-day">
+                <h3 class="day">Time</h3>
+                <h3>Օր</h3>
+            </div>
+            <div class="container-hour">
+                <h3 class="hour">Time</h3>
+                <h3>Ժամ</h3>
+            </div>
+            <div class="container-minute">
+                <h3 class="minute">Time</h3>
+                <h3>Րոպե</h3>
+            </div>
+            <div class="container-second">
+                <h3 class="second">Time</h3>
+                <h3>Վրկ</h3>
+            </div>
+        </div>
+    </div>
+    <img class="waiting" src="countdown/countdown-image.png" alt="image">
+</section>
   
   <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.17/vue.min.js'></script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.min.js'></script>
@@ -270,6 +390,42 @@ function read(type) {
   if (!val) return null;
   return JSON.parse(val);
 }
+
+const countdown = () => {
+            const countDate = new Date('May 10, 2021 19:20:00').getTime()
+            const now = new Date().getTime()
+            const gap = countDate - now
+
+            const second = 1000
+            const minute = second * 60
+            const hour = minute * 60
+            const day = hour * 24
+
+            const textDay = Math.floor(gap / day)
+            const textHour = Math.floor((gap % day) / hour)
+            const textMinute = Math.floor((gap % hour) / minute)
+            const textSecond = Math.floor((gap % minute) / second)
+
+            document.querySelector('.day').innerHTML = textDay
+            document.querySelector('.hour').innerHTML = textHour
+            document.querySelector('.minute').innerHTML = textMinute
+            document.querySelector('.second').innerHTML = textSecond
+
+            if(gap < 1){
+                document.querySelector('.uk-section').style.display = 'block'
+                document.querySelector('.coming-soon').style.display = 'none'
+            }
+
+            if(gap <= 15){
+                document.querySelector('.day').style.color = 'red'
+                document.querySelector('.hour').style.color = 'red'
+                document.querySelector('.minute').style.color = 'red'
+                document.querySelector('.second').style.color = 'red'
+            }
+}
+
+setInterval(countdown, 1000)
+
     </script>
 
   
